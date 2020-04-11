@@ -1,0 +1,280 @@
+#===============================================================
+# Aperture Moderation Bot - https://aperturebot.science/
+# Config used for the Treeland Discord Server - https://discord.gg/PvFPEfd
+#===============================================================
+
+#===============================================================
+# Web Permissions // https://aperturebot.science/docs/general.html#web
+#===============================================================
+web: 
+  179655253392621569: admin # HeroGamers#0001
+  179309962164436992: admin # Xylium#5800
+  106089891036692480: editor # TimThe#1118
+  132819036282159104: viewer # JohnyTheCarrot#0001
+  224322955713314818: viewer # Rashaun#8467
+  179668808770781184: editor # puppetmaster#4910 (Hero's alt)
+
+#===============================================================
+# Prefix for commands // https://aperturebot.science/docs/general.html#commands-and-overrides
+#===============================================================
+commands:
+  prefix: '!'
+  overrides:
+  - {plugin.name: 'utilities', out: {level: 10}} # Trusted can use jumbo, info, and cat and so on
+
+#===============================================================
+# Bot nickname // https://aperturebot.science/docs/general.html#nickname
+#===============================================================
+nickname: AperDoot
+
+#===============================================================
+# Levels for users and roles // https://aperturebot.science/docs/general.html#levels
+#===============================================================
+# 100 = Admin
+# 50 = Moderator
+# 10 = Trusted
+#===============================================================
+levels:
+  179655253392621569: 100 # HeroGamers#0001 (Administrator)
+  319148053812609026: 100 # ROLE // Administrative Perms (Administrator)
+  530778215166509068: 50 # ROLE // Server Moderation Perms (Moderator)
+  221999093386444800: 50 # ROLE // Doots (Moderator)
+  530773672752054283: 20 # ROLE // Epic Gamers (Trusted++)
+  543048754828410890: 15 # ROLE // Palm (Trusted+)
+  562246716343189565: 10 # ROLE // Peeps (Trusted)
+  543047448541659139: 10 # ROLE // Treelander (Trusted)
+
+#===============================================================
+# Bot plugins
+#===============================================================
+plugins:
+
+  #===============================================================
+  # Utilities Plugin // https://aperturebot.science/docs/plugins/utility.html
+  #===============================================================
+  utilities:
+    auto_role: [] # No auto_role
+    react_roles:
+        684494067341590634: # The message in Welcome
+            emotes:
+                587309010500452352: # catblushINTENSE
+                    role: 547142554508853264 # free game
+                586184959254069258: # POGGIES
+                    role: 547160540523266058 # pingpong
+                590695048564178944: # ricardoFlick
+                    role: 665920333307707413 # adult
+                586250559653281809: # denyhammer
+                    role: 698557114142031934 # ButSupport
+        588436017929912342: # The message in #accept-of-rules
+            emotes:
+                561907145231171625: # catblush
+                    role: 530778945105428501 # Risings
+
+  #===============================================================
+  # Admin Plugin // https://aperturebot.science/docs/plugins/admin.html
+  #===============================================================
+  admin:
+    #===============================================================
+    # Use the "roles" command in order to get the IDs you put in here
+    #===============================================================
+    persist:
+      roles: true
+      # Risings, Peeps, Hero's Harem, free game, pingpong, Moderator, Administrator, Epic Gamers, Royalty of Treeland, Hero, Server Moderation Perms, Server Modifying Perms, Administrative Perms
+      role_ids: [
+        530778945105428501, # Risings
+        562246716343189565, # Peeps
+        599720739184312340, # IRL
+        546438295685693440, # Hero's harem
+        547142554508853264, # free game
+        547160540523266058, # pingpong
+        698557114142031934, # BotSupport
+        222000308182712320, # Staff
+        606218033635131448, # Reddit Moderator
+        567817680384425997, # Twitch Mod
+        222000249126780930, # Moderator
+        227440185321848833, # Administrator
+        530773672752054283, # Epic Gamers
+        543050361502564363, # Royalty of Treeland
+        221997435252113422, # Hero
+        590192537424363522, # WatchDog Global Moderator
+        530778215166509068, # Server Moderation Perms
+        530777938224742420, # Server Modifying Perms
+        319148053812609026  # Administration Perms
+      ]
+      nickname: true
+      voice: false
+    role_aliases: {}
+    group_roles:
+      free_game: 547142554508853264
+      freegame: 547142554508853264
+      pingpong: 547160540523266058
+      botsupport: 698557114142031934
+    locked_roles: [319148053812609026, 530777938224742420, 530778215166509068, 531175603488161845] # Administrative Perms, Server Modifying Perms, Server Moderation Perms & nocrown
+
+  #===============================================================
+  # Infractions Plugin // https://aperturebot.science/docs/plugins/infractions.html
+  #===============================================================
+  infractions:
+    confirm_actions: true
+    confirm_actions_reaction: true
+    confirm_actions_expiry: 0
+    mute_role: 530775556040687626
+    reason_edit_level: 100
+    notify_actions: [WARN, KICK, BAN, TEMPBAN, SOFTBAN, UNMUTE, MUTE, TEMPMUTE]
+    show_moderator: true
+    silence_level: 100
+
+  #===============================================================
+  # Starboard Plugin // https://aperturebot.science/docs/plugins/starboard.html
+  #===============================================================
+  starboard:
+    channels:
+      543052595653115924:
+        clear_on_delete: true
+        min_stars: 3
+        star_color_max: 15
+        prevent_self_star: false
+        sources: []
+        ignored_channels: [221998962247204864, 237223522710192129, 530784260471259166, 538095495537754117, 538095514487488520, 538096933676253205, 543052595653115924] # All staff channels and starboard channel as well as adult-talk
+
+  #===============================================================
+  # ModLog Plugin // https://aperturebot.science/docs/plugins/modlog.html
+  #===============================================================
+  modlog:
+    channels:
+      # Mod-log
+      588357876104429598:
+        timestamps: true
+        timezone: Europe/Copenhagen
+        include: [GUILD_ROLE_DELETE, GUILD_ROLE_CREATE, CHANNEL_DELETE, CHANNEL_CREATE, CENSORED, SPAM_DEBUG, MESSAGE_DELETE_BULK, MEMBER_WARNED, MEMBER_TEMPBAN, MEMBER_SOFTBAN, MEMBER_BAN, MEMBER_KICK, MEMBER_UNMUTED, MEMBER_MUTED, MEMBER_TEMP_MUTED, MEMBER_ROLE_REMOVE, MEMBER_ROLE_ADD, GUILD_BAN_ADD, RMV_NICK, ADD_NICK, CHANGE_USERNAME, CHANGE_NICK]
+      # Usage-log
+      588359634318786574:
+        timestamps: true
+        timezone: Europe/Copenhagen
+        include: [COMMAND_USED, VOICE_CHANNEL_JOIN, VOICE_CHANNEL_LEAVE, VOICE_CHANNEL_MOVE, MESSAGE_DELETE, MESSAGE_EDIT, GUILD_MEMBER_ROLES_RMV, GUILD_MEMBER_ROLES_ADD]
+      # Leave/Join-log
+      538096933676253205:
+        timestamps: true
+        timezone: Europe/Copenhagen
+        include: [GUILD_MEMBER_ADD, GUILD_MEMBER_REMOVE, MEMBER_RESTORE]
+    new_member_threshold: 604800
+    ignored_users: [445277324175474689, 593170973193273344] # Switchblade, noDoot #[179655253392621569] # HeroGamers#0001
+    ignored_channels: []
+
+  #===============================================================
+  # Spam Plugin // https://aperturebot.science/docs/plugins/spam.html
+  #===============================================================
+  spam:
+    levels:
+      0:
+        punishment: BAN
+        punishment_duration: 0
+        clean: true
+        clean_count: 50
+        clean_duration: 500
+        max_messages:
+          count: 10
+          interval: 7
+        max_mentions:
+          count: 6
+          interval: 15
+        max_links:
+          count: 6
+          interval: 30
+        max_attachments:
+          count: 10
+          interval: 30
+        max_emojis:
+          count: 15
+          interval: 30
+        max_newlines:
+          count: 30
+          interval: 30
+        max_duplicates:
+          count: 5
+          interval: 30
+        ignored_channels: [562263442698797066]
+      10:
+        punishment: TEMPMUTE
+        punishment_duration: 300
+        clean: true
+        clean_count: 50
+        clean_duration: 500
+        max_messages:
+          count: 10
+          interval: 10
+        max_mentions:
+          count: 6
+          interval: 15
+        max_links:
+          count: 6
+          interval: 30
+        max_attachments:
+          count: 10
+          interval: 30
+        max_emojis:
+          count: 15
+          interval: 30
+        max_newlines:
+          count: 30
+          interval: 30
+        max_duplicates:
+          count: 5
+          interval: 30
+      15:
+        punishment: TEMPMUTE
+        punishment_duration: 300
+        clean: true
+        clean_count: 50
+        clean_duration: 500
+        max_messages:
+          count: 15
+          interval: 15
+        max_mentions:
+          count: 6
+          interval: 15
+        max_links:
+          count: 14
+          interval: 30
+        max_attachments:
+          count: 10
+          interval: 30
+        max_emojis:
+          count: 20
+          interval: 30
+        max_newlines:
+          count: 30
+          interval: 30
+        max_duplicates:
+          count: 15
+          interval: 30
+    ignored_channels: []
+
+  #===============================================================
+  # Censor Plugin // https://aperturebot.science/docs/plugins/censor.html
+  #===============================================================
+  censor:
+    levels:
+      0:
+        filter_zalgo: true
+        filter_invites: true
+        invites_whitelist: ['discord-developers', 'discord-testers', 'discord-api', 'events', 'discord-linux', 'gamenight', 'discord-feedback']
+        invites_guild_whitelist: [221996778092888065, 242087021357563906, 456154271164137493, 476104552802943008, 481203503415427092, 477983411596951559] # Treeland, Heroji, Heroji 2, Heroji 3, Heroji 4 & Heroji HD
+        domains_blacklist: ['pornhub.com', 'xvideos.com', 'hentaihaven.org', 'nhentai.net', 'hqporner.com', 'viewc.site', 'privatepage.vip', 'nakedphotos.club', 'chelseabomb.gq', 'geniuschat.tk']
+        blocked_tokens: ['My naked photos', 'nigger', 'nigga', 'nibba', 'faggot', 'rtard', 'retard', 'negro']
+        blocked_words: ['nig', 'fag', 'fags', '\u30c0\u30c1']
+      10:
+        filter_invites: true
+        invites_whitelist: ['discord-developers', 'discord-testers', 'discord-api', 'events', 'discord-linux', 'gamenight', 'discord-feedback']
+        invites_guild_whitelist: [221996778092888065, 242087021357563906, 456154271164137493, 476104552802943008, 481203503415427092, 477983411596951559] # Treeland, Heroji, Heroji 2, Heroji 3, Heroji 4 & Heroji HD
+        domains_blacklist: ['pornhub.com', 'xvideos.com', 'hentaihaven.org', 'nhentai.net', 'hqporner.com', 'viewc.site', 'privatepage.vip', 'nakedphotos.club', 'chelseabomb.gq', 'geniuschat.tk']
+        blocked_tokens: ['My naked photos', 'nigger', 'nigga', 'nibba', 'faggot', 'rtard',  'retard', 'negro']
+        blocked_words: ['nig', 'fag', 'fags', '\u30c0\u30c1']
+      15:
+        filter_invites: false
+        domains_blacklist: ['pornhub.com', 'xvideos.com', 'hentaihaven.org', 'nhentai.net', 'hqporner.com', 'viewc.site', 'privatepage.vip', 'nakedphotos.club', 'chelseabomb.gq', 'geniuschat.tk']
+        blocked_tokens: ['nigga', 'nigger', 'nibba', 'faggot', 'rtard', 'retard', 'negro']
+        blocked_words: ['nig', 'fag', 'fags', '\u30c0\u30c1']
+      20:
+        filter_invites: false
+        domains_blacklist: ['pornhub.com', 'xvideos.com', 'hentaihaven.org', 'nhentai.net', 'hqporner.com', 'viewc.site', 'privatepage.vip', 'nakedphotos.club', 'chelseabomb.gq', 'geniuschat.tk']
