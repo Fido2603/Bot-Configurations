@@ -1,0 +1,251 @@
+#===============================================================
+# Aperture Moderation Bot - https://aperturebot.science/
+#===============================================================
+
+#===============================================================
+# Web Permissions // https://aperturebot.science/docs/general.html#web
+#===============================================================
+web: 
+  000000000000000000: admin  # ID of user to allow access to dashboard
+  000000000000000000: editor # ID of user to allow access to dashboard
+  000000000000000000: viewer # ID of user to allow access to dashboard
+
+#===============================================================
+# Prefix for commands // https://aperturebot.science/docs/general.html#commands-and-overrides
+#===============================================================
+commands:
+  prefix: '!'
+  overrides:
+  - {plugin.name: 'utilities', out: {level: 10}} # Trusted can use jumbo, info, and cat and so on
+
+#===============================================================
+# Bot nickname // https://aperturebot.science/docs/general.html#nickname
+#===============================================================
+nickname: Aperture
+
+#===============================================================
+# Levels for users and roles // https://aperturebot.science/docs/general.html#levels
+#===============================================================
+# 100 = Admin
+# 50 = Moderator
+# 10 = Trusted
+#===============================================================
+levels:
+  000000000000000000: 100 # Server Owner ID (Administrator)
+  000000000000000000: 100 # ROLE ID // Administrator Role (Administrator)
+  000000000000000000: 50 # ROLE ID // Moderator role (Moderator)
+  000000000000000000: 20 # ROLE ID // A role for trusted members of the server (Trusted++)
+  000000000000000000: 15 # ROLE ID // A role for trusted members of the server (Trusted+)
+  000000000000000000: 10 # ROLE ID // A role for trusted members of the server (Trusted)
+
+#===============================================================
+# Bot plugins
+#===============================================================
+plugins:
+
+  #===============================================================
+  # Utilities Plugin // https://aperturebot.science/docs/plugins/utility.html
+  #===============================================================
+  utilities:
+    auto_role: [] # No auto role
+    react_roles:
+        000000000000000000: # Message ID for react-roles
+            emotes:
+                000000000000000000: # emote ID
+                    role: 000000000000000000 # role ID
+                000000000000000000: # emote ID
+                    role: 000000000000000000 # role ID
+        000000000000000000: # Message ID for react-roles
+            emotes:
+                000000000000000000: # emote ID
+                    role: 000000000000000000 # role ID
+
+  #===============================================================
+  # Admin Plugin // https://aperturebot.science/docs/plugins/admin.html
+  #===============================================================
+  admin:
+    #===============================================================
+    # Use the "roles" command in order to get the IDs you put in here
+    #===============================================================
+    persist:
+      roles: true
+      role_ids: [
+        000000000000000000,
+        000000000000000000,
+        000000000000000000
+      ]
+      nickname: true
+      voice: false
+    role_aliases: {}
+    group_roles:
+      role_name: 000000000000000000 # role ID
+      role2_name: 000000000000000000 # role ID
+    locked_roles: [000000000000000000, 000000000000000000, 000000000000000000] # ID's of roles that shouldn't be modified - locks permission changes
+
+  #===============================================================
+  # Infractions Plugin // https://aperturebot.science/docs/plugins/infractions.html
+  #===============================================================
+  infractions:
+    confirm_actions: true
+    confirm_actions_reaction: true
+    confirm_actions_expiry: 0
+    mute_role: 000000000000000000
+    reason_edit_level: 100
+    notify_actions: [WARN, KICK, BAN, TEMPBAN, SOFTBAN, UNMUTE, MUTE, TEMPMUTE]
+    show_moderator: true
+    silence_level: 100
+
+  #===============================================================
+  # Starboard Plugin // https://aperturebot.science/docs/plugins/starboard.html
+  #===============================================================
+  starboard:
+    channels:
+      000000000000000000:
+        clear_on_delete: true
+        min_stars: 3
+        star_color_max: 15
+        prevent_self_star: false
+        sources: []
+        ignored_channels: [000000000000000000, 000000000000000000] # Staff channels and maybe NSFW channels
+
+  #===============================================================
+  # ModLog Plugin // https://aperturebot.science/docs/plugins/modlog.html
+  #===============================================================
+  modlog:
+    channels:
+      # Mod-log
+      000000000000000000:
+        timestamps: true
+        timezone: Europe/Copenhagen
+        include: [GUILD_ROLE_DELETE, GUILD_ROLE_CREATE, CHANNEL_DELETE, CHANNEL_CREATE, CENSORED, SPAM_DEBUG, MESSAGE_DELETE_BULK, MEMBER_WARNED, MEMBER_TEMPBAN, MEMBER_SOFTBAN, MEMBER_BAN, MEMBER_KICK, MEMBER_UNMUTED, MEMBER_MUTED, MEMBER_TEMP_MUTED, MEMBER_ROLE_REMOVE, MEMBER_ROLE_ADD, GUILD_BAN_ADD, RMV_NICK, ADD_NICK, CHANGE_USERNAME, CHANGE_NICK]
+      # Usage-log
+      000000000000000000:
+        timestamps: true
+        timezone: Europe/Copenhagen
+        include: [COMMAND_USED, VOICE_CHANNEL_JOIN, VOICE_CHANNEL_LEAVE, VOICE_CHANNEL_MOVE, MESSAGE_DELETE, MESSAGE_EDIT, GUILD_MEMBER_ROLES_RMV, GUILD_MEMBER_ROLES_ADD]
+      # Leave/Join-log
+      000000000000000000:
+        timestamps: true
+        timezone: Europe/Copenhagen
+        include: [GUILD_MEMBER_ADD, GUILD_MEMBER_REMOVE, MEMBER_RESTORE]
+    new_member_threshold: 604800
+    ignored_users: []
+    ignored_channels: []
+
+  #===============================================================
+  # Spam Plugin // https://aperturebot.science/docs/plugins/spam.html
+  #===============================================================
+  spam:
+    levels:
+      0:
+        punishment: BAN
+        punishment_duration: 0
+        clean: true
+        clean_count: 50
+        clean_duration: 500
+        max_messages:
+          count: 10
+          interval: 7
+        max_mentions:
+          count: 6
+          interval: 15
+        max_links:
+          count: 6
+          interval: 30
+        max_attachments:
+          count: 10
+          interval: 30
+        max_emojis:
+          count: 15
+          interval: 30
+        max_newlines:
+          count: 30
+          interval: 30
+        max_duplicates:
+          count: 5
+          interval: 30
+        ignored_channels: []
+      10:
+        punishment: TEMPMUTE
+        punishment_duration: 300
+        clean: true
+        clean_count: 50
+        clean_duration: 500
+        max_messages:
+          count: 10
+          interval: 10
+        max_mentions:
+          count: 6
+          interval: 15
+        max_links:
+          count: 6
+          interval: 30
+        max_attachments:
+          count: 10
+          interval: 30
+        max_emojis:
+          count: 15
+          interval: 30
+        max_newlines:
+          count: 30
+          interval: 30
+        max_duplicates:
+          count: 5
+          interval: 30
+      15:
+        punishment: TEMPMUTE
+        punishment_duration: 300
+        clean: true
+        clean_count: 50
+        clean_duration: 500
+        max_messages:
+          count: 15
+          interval: 15
+        max_mentions:
+          count: 6
+          interval: 15
+        max_links:
+          count: 14
+          interval: 30
+        max_attachments:
+          count: 10
+          interval: 30
+        max_emojis:
+          count: 20
+          interval: 30
+        max_newlines:
+          count: 30
+          interval: 30
+        max_duplicates:
+          count: 15
+          interval: 30
+    ignored_channels: []
+
+  #===============================================================
+  # Censor Plugin // https://aperturebot.science/docs/plugins/censor.html
+  #===============================================================
+  censor:
+    levels:
+      0:
+        filter_zalgo: true
+        filter_invites: true
+        invites_whitelist: ['discord-developers', 'discord-testers', 'discord-api', 'events', 'discord-linux', 'gamenight', 'discord-feedback']
+        invites_guild_whitelist: []
+        domains_blacklist: ['pornhub.com', 'xvideos.com', 'hentaihaven.org', 'nhentai.net', 'hqporner.com', 'viewc.site', 'privatepage.vip', 'nakedphotos.club', 'chelseabomb.gq', 'geniuschat.tk']
+        blocked_tokens: ['My naked photos', 'nigger', 'nigga', 'nibba', 'faggot', 'rtard', 'retard', 'negro']
+        blocked_words: ['nig', 'fag', 'fags', '\u30c0\u30c1']
+      10:
+        filter_invites: true
+        invites_whitelist: ['discord-developers', 'discord-testers', 'discord-api', 'events', 'discord-linux', 'gamenight', 'discord-feedback']
+        invites_guild_whitelist: []
+        domains_blacklist: ['pornhub.com', 'xvideos.com', 'hentaihaven.org', 'nhentai.net', 'hqporner.com', 'viewc.site', 'privatepage.vip', 'nakedphotos.club', 'chelseabomb.gq', 'geniuschat.tk']
+        blocked_tokens: ['My naked photos', 'nigger', 'nigga', 'nibba', 'faggot', 'rtard',  'retard', 'negro']
+        blocked_words: ['nig', 'fag', 'fags', '\u30c0\u30c1']
+      15:
+        filter_invites: false
+        domains_blacklist: ['pornhub.com', 'xvideos.com', 'hentaihaven.org', 'nhentai.net', 'hqporner.com', 'viewc.site', 'privatepage.vip', 'nakedphotos.club', 'chelseabomb.gq', 'geniuschat.tk']
+        blocked_tokens: ['nigga', 'nigger', 'nibba', 'faggot', 'rtard', 'retard', 'negro']
+        blocked_words: ['nig', 'fag', 'fags', '\u30c0\u30c1']
+      20:
+        filter_invites: false
+        domains_blacklist: ['pornhub.com', 'xvideos.com', 'hentaihaven.org', 'nhentai.net', 'hqporner.com', 'viewc.site', 'privatepage.vip', 'nakedphotos.club', 'chelseabomb.gq', 'geniuschat.tk']
